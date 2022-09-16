@@ -6,6 +6,8 @@ from ..models import Post, Vote
 from .serializers import PostSerializer, VoteSerializer
 
 
+
+
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -13,6 +15,19 @@ class PostList(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(poster=self.request.user)
+    
+class PostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def delete(self, request, *args, **kwargs):
+        post = Post.objects.filter(pk=kwargs['pk'], poster=self.request.user)
+        if post.exists():
+            return self.destroy(request, *args, **kwargs)
+        else:
+            raise ValidationError("Heh this is not your post dude")
+        
+
     
 class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
     serializer_class = VoteSerializer
