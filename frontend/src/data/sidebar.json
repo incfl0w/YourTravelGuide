@@ -8,21 +8,21 @@
         "icon": "real-estate-1"
       },
       {
-        "name": "CMS",
+        "name": "Traveling",
         "link": "/#",
         "icon": "reading-1",
         "links": [
           {
-            "name": "Posts",
-            "link": "/cms-post"
+            "name": "Countries",
+            "link": "/cms-media"
           },
           {
-            "name": "Add new post",
-            "link": "/cms-post-new"
+            "name": "Cities",
+            "link": "/cms-post"
           },
 
           {
-            "name": "Categories",
+            "name": "Places",
             "link": "/cms-category"
           },
           {

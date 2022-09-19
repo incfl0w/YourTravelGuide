@@ -14,7 +14,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import Image from "../components/CustomImage"
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
-
+import React from "react"
 import data from "../data/cms-media.json"
 import Dropzone from "../components/Dropzone"
 export async function getStaticProps() {
