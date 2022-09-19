@@ -57,6 +57,13 @@ class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
 #City
 class CityList(generics.ListCreateAPIView):
     serializer_class = CitySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def get_queryset(self):
+        return City.objects.all()
+    
+class CityRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CitySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     def get_queryset(self):
         return City.objects.all()
     
@@ -67,6 +74,12 @@ class CityList(generics.ListCreateAPIView):
 #Country
 class CountryList(generics.ListCreateAPIView):
     serializer_class = CountrySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     def get_queryset(self):
         return Country.objects.all()
 
+class CountryRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CountrySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def get_queryset(self):
+        return Country.objects.all()
