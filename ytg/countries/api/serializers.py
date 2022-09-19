@@ -1,3 +1,4 @@
+from dataclasses import fields
 from rest_framework import serializers
 from ..models import Post, Vote, City, Country, Continent
 
@@ -17,3 +18,17 @@ class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
         fields = ['id']
+        
+        
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = ['name', 'description', 'photo', 'country']
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ['name', 'description', 'photo', 'continent']
+        
+

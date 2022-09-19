@@ -37,7 +37,7 @@ class City(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     country = models.ForeignKey('Country', on_delete=models.CASCADE)
-
+    photo = models.ImageField(upload_to='cities', blank=True)
     class Meta:
         verbose_name = ("City")
         verbose_name_plural = ("Citys")
@@ -51,6 +51,7 @@ class City(models.Model):
 class Country(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    photo = models.ImageField(upload_to='countries', blank=True)
     continent = models.ForeignKey('Continent', on_delete=models.CASCADE)
     
     class Meta:

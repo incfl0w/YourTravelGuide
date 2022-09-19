@@ -2,12 +2,12 @@ from django.shortcuts import render
 from rest_framework import generics, permissions, mixins, status
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from ..models import Post, Vote
-from .serializers import PostSerializer, VoteSerializer
+from ..models import Post, Vote, Country, City
+from .serializers import PostSerializer, VoteSerializer, CitySerializer, CountrySerializer
 
 
 
-
+#Post
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -28,7 +28,7 @@ class PostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
             raise ValidationError("Heh this is not your post dude")
         
 
-    
+#Vote    
 class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
     serializer_class = VoteSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -53,3 +53,20 @@ class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
         else:
             raise ValidationError("You never voted for this post")
             
+
+#City
+class CityList(generics.ListCreateAPIView):
+    serializer_class = CitySerializer
+    def get_queryset(self):
+        return City.objects.all()
+    
+    
+
+
+          
+#Country
+class CountryList(generics.ListCreateAPIView):
+    serializer_class = CountrySerializer
+    def get_queryset(self):
+        return Country.objects.all()
+
