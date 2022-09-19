@@ -23,12 +23,13 @@ class VoteSerializer(serializers.ModelSerializer):
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
-        fields = ['name', 'description', 'photo', 'country']
+        fields = ['id', 'name', 'description', 'photo', 'country']
 
 
 class CountrySerializer(serializers.ModelSerializer):
+    cities = CitySerializer(many=True, source='city_set')
     class Meta:
         model = Country
-        fields = ['name', 'description', 'photo', 'continent']
+        fields = ['id', 'name', 'description', 'photo', 'continent', 'cities']
         
 
