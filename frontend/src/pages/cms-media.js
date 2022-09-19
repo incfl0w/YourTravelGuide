@@ -44,14 +44,7 @@ export default function cmsMedia(props) {
     setActiveImage(index)
     setLightBoxOpen(!lightBoxOpen)
   }
-  const customStyles = {
-    overlay: {
-      zIndex: "1000",
-    },
-    bodyOpen: {
-      position: "fixed",
-    },
-  }
+  
   return (
     <Container fluid className="px-lg-4 px-xl-5">
       <div className="page-header d-flex justify-content-between align-items-center">
@@ -155,29 +148,7 @@ export default function cmsMedia(props) {
           ))}
         </Row>}
       </section>
-      {lightBoxOpen && (
-        <Lightbox
-          mainSrc={data.media[activeImage].img}
-          nextSrc={data.media[(activeImage + 1) % data.media.length].img}
-          prevSrc={
-            data.media[
-              (activeImage + data.media.length - 1) % data.media.length
-            ].img
-          }
-          onCloseRequest={() => setLightBoxOpen(false)}
-          imageCaption={data.media[activeImage].name}
-          onMovePrevRequest={() =>
-            setActiveImage(
-              (activeImage + data.media.length - 1) % data.media.length
-            )
-          }
-          onMoveNextRequest={() =>
-            setActiveImage((activeImage + 1) % data.media.length)
-          }
-          enableZoom={false}
-          reactModalStyle={customStyles}
-        />
-      )}
+     
     </Container>
   )
 }
