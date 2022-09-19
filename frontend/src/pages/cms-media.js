@@ -7,7 +7,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
@@ -17,6 +17,11 @@ import "react-image-lightbox/style.css"
 import React from "react"
 import data from "../data/cms-media.json"
 import Dropzone from "../components/Dropzone"
+import CountryService from "../services/countryService"
+
+
+
+
 export async function getStaticProps() {
   return {
     props: {
@@ -25,8 +30,13 @@ export async function getStaticProps() {
   }
 }
 export default function cmsMedia(props) {
+  const countryService = new CountryService()
+  const [countries, setCountries] = useState([])
   const [openDropzone, setOpenDropzone] = useState(false)
-
+  useEffect(()=> {
+    countryService.getAllCountries()
+    .then(data => setCountries(data))
+  }, [])
   const [lightBoxOpen, setLightBoxOpen] = useState(false)
   const [activeImage, setActiveImage] = useState(0)
   const onClick = (e, index) => {
@@ -34,14 +44,7 @@ export default function cmsMedia(props) {
     setActiveImage(index)
     setLightBoxOpen(!lightBoxOpen)
   }
-  const customStyles = {
-    overlay: {
-      zIndex: "1000",
-    },
-    bodyOpen: {
-      position: "fixed",
-    },
-  }
+  
   return (
     <Container fluid className="px-lg-4 px-xl-5">
       <div className="page-header d-flex justify-content-between align-items-center">
@@ -115,12 +118,13 @@ export default function cmsMedia(props) {
             </Row>
           </Card.Body>
         </Card>
-        <Row>
-          {data.media.map((item, index) => (
+        {console.log(typeof(countries))}
+        {countries && <Row>
+          {countries.map((item, index) => (
             <Col xs={6} md={4} lg={3} xl={2} key={index}>
               <Card className="position-relative mb-4">
                 <Image
-                  src={item.img}
+                  src={item.photo}
                   alt={item.name}
                   className="card-img-top"
                   layout="responsive"
@@ -142,31 +146,9 @@ export default function cmsMedia(props) {
               </Card>
             </Col>
           ))}
-        </Row>
+        </Row>}
       </section>
-      {lightBoxOpen && (
-        <Lightbox
-          mainSrc={data.media[activeImage].img}
-          nextSrc={data.media[(activeImage + 1) % data.media.length].img}
-          prevSrc={
-            data.media[
-              (activeImage + data.media.length - 1) % data.media.length
-            ].img
-          }
-          onCloseRequest={() => setLightBoxOpen(false)}
-          imageCaption={data.media[activeImage].name}
-          onMovePrevRequest={() =>
-            setActiveImage(
-              (activeImage + data.media.length - 1) % data.media.length
-            )
-          }
-          onMoveNextRequest={() =>
-            setActiveImage((activeImage + 1) % data.media.length)
-          }
-          enableZoom={false}
-          reactModalStyle={customStyles}
-        />
-      )}
+     
     </Container>
   )
 }
