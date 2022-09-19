@@ -1,0 +1,109 @@
+/*
+*
+* =====================
+* Other
+* =====================
+*
+*/
+
+.dropdown-menu {
+  box-shadow: $box-shadow;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0.4rem;
+  right: -.2rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  text-align: center;
+  color: $white;
+  border-radius: 50%;
+
+  &.notification-badge-number {
+      top: 0rem;
+      right: -.4rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      vertical-align: middle;
+      font-size: .7rem;
+      line-height: 1.2rem;
+  }
+
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  &.dot-sm {
+      width: 8px;
+      height: 8px;
+  }
+}
+
+.todo .form-check-input:checked+.form-check-label {
+  color: $gray-500;
+  text-decoration: line-through;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  border-bottom-width: 5px;
+  margin-bottom: -3px;
+}
+
+.nav-tabs .nav-link {
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+.display-hover {
+  .display-hover-content {
+      opacity: 0;
+      @include ondrTransition;
+  }
+
+  &:hover,
+  &:focus {
+      .display-hover-content {
+          opacity: 1;
+      }
+  }
+}
+
+.list-inline-item.divider {
+  margin-left: $spacer;
+  padding-left: $spacer * 1.5;
+  border-left: solid 1px $gray-400;
+}
+
+.badge {
+  .indicator {
+      display: inline-block;
+      width: .5em;
+      height: .5em;
+      background-color: currentColor;
+      border-radius: 50%;
+      margin-right: .5em;
+      vertical-align: .1em;
+  }
+}
+
+.header {
+  .dropdown-toggle {
+    &:after {
+      display: none;
+    }
+  }
+}
+.card-header-more {
+  button {
+    &:after {
+      display: none;
+    }
+  }
+}
