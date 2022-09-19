@@ -47,6 +47,7 @@ class City(models.Model):
 
     def get_absolute_url(self):
         return reverse("City_detail", kwargs={"pk": self.pk})
+ 
     
 class Country(models.Model):
     name = models.CharField(max_length=100)
@@ -64,6 +65,11 @@ class Country(models.Model):
     def get_absolute_url(self):
         return reverse("Country_detail", kwargs={"pk": self.pk})
     
+    @property
+    def cities(self):
+        cities = self.city_set.all()
+        return cities
+  
 class Continent(models.Model):
     name = models.CharField(max_length=30)
     

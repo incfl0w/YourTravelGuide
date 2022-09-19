@@ -27,8 +27,9 @@ class CitySerializer(serializers.ModelSerializer):
 
 
 class CountrySerializer(serializers.ModelSerializer):
+    cities = CitySerializer(many=True, source='city_set')
     class Meta:
         model = Country
-        fields = ['id', 'name', 'description', 'photo', 'continent']
+        fields = ['id', 'name', 'description', 'photo', 'continent', 'cities']
         
 

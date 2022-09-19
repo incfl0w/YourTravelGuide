@@ -15,3 +15,6 @@
 4. python3 manage.py runserver
 
 5. Enjoy
+
+
+#pip freeze > requirements.txt

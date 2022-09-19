@@ -66,11 +66,8 @@ class CityRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     def get_queryset(self):
         return City.objects.all()
-    
-    
 
-
-          
+    
 #Country
 class CountryList(generics.ListCreateAPIView):
     serializer_class = CountrySerializer
