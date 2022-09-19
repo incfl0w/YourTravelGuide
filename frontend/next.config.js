@@ -9,11 +9,13 @@ module.exports = withPlugins(
       reactSvg,
       {
         include: path.resolve(__dirname, "src/assets/svg"),
+        
       },
     ],
   ],
   {
     images: {
+      domains: ['127.0.0.1','http://127.0.0.1:8000/' ], 
       deviceSizes: [320, 480, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
       // loader: "imgix", // Uncomment this line for STATIC EXPORT
       // path: "", // Uncomment this line for STATIC EXPORT
