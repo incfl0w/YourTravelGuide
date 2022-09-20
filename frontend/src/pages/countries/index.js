@@ -11,13 +11,14 @@ import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
-import Image from "../components/CustomImage"
-import Lightbox from "react-image-lightbox"
+import Image from "../../components/CustomImage"
+// import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
 import React from "react"
-import data from "../data/cms-media.json"
-import Dropzone from "../components/Dropzone"
-import CountryService from "../services/countryService"
+// import data from "../../data/cms-media.json"
+import Link from "next/link"
+import Dropzone from "../../components/Dropzone"
+import CountryService from "../../services/countryService"
 
 
 
@@ -38,7 +39,7 @@ export default function cmsMedia(props) {
     .then(data => setCountries(data))
   }, [])
   const [lightBoxOpen, setLightBoxOpen] = useState(false)
-  const [activeImage, setActiveImage] = useState(0)
+  // const [activeImage, setActiveImage] = useState(0)
   const onClick = (e, index) => {
     e.preventDefault()
     setActiveImage(index)
@@ -121,7 +122,9 @@ export default function cmsMedia(props) {
         {console.log(typeof(countries))}
         {countries && <Row>
           {countries.map((item, index) => (
+             
             <Col xs={6} md={4} lg={3} xl={2} key={index}>
+              <Link href={"http://localhost:3000/cms-media"+item.id} passHref>
               <Card className="position-relative mb-4">
                 <Image
                   src={item.photo}
@@ -144,7 +147,9 @@ export default function cmsMedia(props) {
                   onClick={(e) => onClick(e, index)}
                 ></a>
               </Card>
+              </Link>
             </Col>
+            
           ))}
         </Row>}
       </section>
