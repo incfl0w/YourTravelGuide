@@ -11,13 +11,14 @@ import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
-import Image from "../components/CustomImage"
+import Image from "../../components/CustomImage"
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
 import React from "react"
-import data from "../data/cms-media.json"
-import Dropzone from "../components/Dropzone"
-import CountryService from "../services/countryService"
+import data from "../../data/cms-media.json"
+import Link from "next/link"
+import Dropzone from "../../components/Dropzone"
+import CountryService from "../../services/countryService"
 
 
 
@@ -48,7 +49,7 @@ export default function cmsMedia(props) {
   return (
     <Container fluid className="px-lg-4 px-xl-5">
       <div className="page-header d-flex justify-content-between align-items-center">
-        <h1 className="page-heading mb-0">{props.title}</h1>
+        <h2 className="page-heading mb-0">Countries</h2>
         <div>
           <Button
             variant="primary"
@@ -121,8 +122,10 @@ export default function cmsMedia(props) {
         {console.log(typeof(countries))}
         {countries && <Row>
           {countries.map((item, index) => (
+             
             <Col xs={6} md={4} lg={3} xl={2} key={index}>
-              <Card className="position-relative mb-4">
+              <Link href={"http://localhost:3000/countries/"+item.id} passHref>
+              <Card className="position-relative mb-4" style={{cursor: 'pointer'}}>
                 <Image
                   src={item.photo}
                   alt={item.name}
@@ -138,13 +141,11 @@ export default function cmsMedia(props) {
                     {item.name}
                   </Card.Text>
                 </Card.Body>
-                <a
-                  className="glightbox stretched-link"
-                  href="#"
-                  onClick={(e) => onClick(e, index)}
-                ></a>
+                
               </Card>
+              </Link>
             </Col>
+            
           ))}
         </Row>}
       </section>

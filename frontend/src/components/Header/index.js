@@ -26,9 +26,11 @@ export default function Header({ setSidebarShrink, sidebarShrink }) {
           <FontAwesomeIcon icon={faAlignLeft} />
         </a>
         <Link href="/" passHref>
-          <Navbar.Brand className="fw-bold text-uppercase text-base">
-            <span className="d-none d-brand-partial">Bubbly</span>{" "}
-            <span className="d-none d-sm-inline">Dashboard</span>
+          <Navbar.Brand className="text-muted text-uppercase small text-base">
+           
+            <span className="">YTG</span>
+            <span className="dot bg-gray-200 shadow d-inline-block me-3"></span>
+            <span className="">Your Travel Guide</span>
           </Navbar.Brand>
         </Link>
         <div className="ms-auto d-flex align-items-center mb-0">
