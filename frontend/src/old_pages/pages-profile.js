@@ -17,6 +17,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons"
 
+import React from "react"
 import profile from "../data/profile.json"
 import { faPhone } from "@fortawesome/free-solid-svg-icons"
 
@@ -25,6 +26,7 @@ import EditProfile from "../components/Forms/EditProfile"
 import PageHeader from "../components/PageHeader"
 import Breadcrumbs from "../components/Breadcrumbs"
 import Avatar from "../components/Avatar"
+import React from "react"
 export async function getStaticProps() {
   return {
     props: {

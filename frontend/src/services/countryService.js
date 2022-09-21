@@ -17,6 +17,12 @@ async getAllCountries(){
     return res
 }
 
+async getCountry(id){
+    const res = await this.getResource(`api/v1/countries/${id}/?format=json`);
+    console.log(res)
+    return res
+}
+
 }
 
 export default CountryService;
