@@ -12,9 +12,8 @@ import profile from "../../../data/profile.json"
 // datatable
 import Link from "next/link"
 import { Form } from "react-bootstrap"
+import LOCAL_HOST from '../../../data/global_vars/local_host'
 
-
-import data from "../../../data/cms-post.json"
 
 import { DataTable } from "simple-datatables"
 import {  useRef } from "react"
@@ -159,13 +158,13 @@ useEffect(() => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, index) => (
+                {country.cities && country.cities.map((item, index) => (
                   <tr key={index}>
                     <td>
                       <Form.Check type="checkbox" />
                     </td>
                     <td>
-                      <Link href={item.link}>
+                      <Link href={`${LOCAL_HOST}cities/${item.id}`}>
                         <a className="text-decoration-none text-reset d-flex align-items-center">
                           <div
                             className="d-inline-block me-3"
@@ -175,7 +174,7 @@ useEffect(() => {
                               layout="responsive"
                               width={100}
                               height={66}
-                              src={item.img}
+                              src={item.photo}
                               alt={item.name}
                               loading="eager"
                               className="img-fluid rounded"
@@ -186,8 +185,8 @@ useEffect(() => {
                         </a>
                       </Link>
                     </td>
-                    <td>{item.author}</td>
-                    <td>{item.category}</td>
+                    <td>{item.id}</td>
+                    <td>{item.description}</td>
                     <td>{item.date}</td>
                   </tr>
                 ))}

@@ -19,7 +19,7 @@ import React from "react"
 import Link from "next/link"
 import Dropzone from "../../components/Dropzone"
 import CityService from "../../services/CityService"
-
+import LOCAL_HOST from "../../data/global_vars/local_host"
 
 
 
@@ -124,7 +124,7 @@ export default function cmsMedia(props) {
           {cities.map((item, index) => (
              
             <Col xs={6} md={4} lg={3} xl={2} key={index}>
-              <Link href={"http://localhost:3000/cities/"+item.id} passHref>
+              <Link href={`${LOCAL_HOST}cities/${item.id}`} passHref>
               <Card className="position-relative mb-4" style={{cursor: 'pointer'}}>
                 <Image
                   src={item.photo}

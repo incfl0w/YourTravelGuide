@@ -19,6 +19,7 @@ import data from "../../data/cms-media.json"
 import Link from "next/link"
 import Dropzone from "../../components/Dropzone"
 import CountryService from "../../services/countryService"
+import LOCAL_HOST from "../../data/global_vars/local_host"
 
 
 
@@ -124,7 +125,7 @@ export default function cmsMedia(props) {
           {countries.map((item, index) => (
              
             <Col xs={6} md={4} lg={3} xl={2} key={index}>
-              <Link href={"http://localhost:3000/countries/"+item.id} passHref>
+              <Link href={`${LOCAL_HOST}countries/${item.id}`} passHref>
               <Card className="position-relative mb-4" style={{cursor: 'pointer'}}>
                 <Image
                   src={item.photo}
