@@ -17,7 +17,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons"
 
-import React from "react"
+
 import profile from "../data/profile.json"
 import { faPhone } from "@fortawesome/free-solid-svg-icons"
 

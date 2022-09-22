@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button, Card, Container, Form } from "react-bootstrap"
 import Image from "../components/CustomImage"
-
+import React from "react"
 import data from "../data/cms-post.json"
 
 import { DataTable } from "simple-datatables"

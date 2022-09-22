@@ -5,6 +5,7 @@ class CountryService {
 
 async getResource(url){
     const res = await fetch(`${this._apiBase}${url}`);
+  
     if(!res.ok){
         throw new Error(`Could not fetch ${url} Recieved ${res.status}`)
     }
@@ -13,13 +14,13 @@ async getResource(url){
 
 async getAllCountries(){
     const res = await this.getResource('api/v1/countries/?format=json');
-    console.log(res)
+    
     return res
 }
 
 async getCountry(id){
     const res = await this.getResource(`api/v1/countries/${id}/?format=json`);
-    console.log(res)
+    
     return res
 }
 

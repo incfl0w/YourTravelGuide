@@ -12,15 +12,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
 import Image from "../../components/CustomImage"
-import Lightbox from "react-image-lightbox"
+
 import "react-image-lightbox/style.css"
 import React from "react"
-import data from "../../data/cms-media.json"
+
 import Link from "next/link"
 import Dropzone from "../../components/Dropzone"
-import CountryService from "../../services/countryService"
+import CityService from "../../services/CityService"
 import LOCAL_HOST from "../../data/global_vars/local_host"
-
 
 
 
@@ -32,12 +31,12 @@ export async function getStaticProps() {
   }
 }
 export default function cmsMedia(props) {
-  const countryService = new CountryService()
-  const [countries, setCountries] = useState([])
+  const cityService = new CityService()
+  const [cities, setCities] = useState([])
   const [openDropzone, setOpenDropzone] = useState(false)
   useEffect(()=> {
-    countryService.getAllCountries()
-    .then(data => setCountries(data))
+    cityService.getAllCities()
+    .then(data => setCities(data))
   }, [])
   const [lightBoxOpen, setLightBoxOpen] = useState(false)
   const [activeImage, setActiveImage] = useState(0)
@@ -120,12 +119,12 @@ export default function cmsMedia(props) {
             </Row>
           </Card.Body>
         </Card>
-        {console.log(typeof(countries))}
-        {countries && <Row>
-          {countries.map((item, index) => (
+        {console.log(typeof(cities))}
+        {cities && <Row>
+          {cities.map((item, index) => (
              
             <Col xs={6} md={4} lg={3} xl={2} key={index}>
-              <Link href={`${LOCAL_HOST}countries/${item.id}`} passHref>
+              <Link href={`${LOCAL_HOST}cities/${item.id}`} passHref>
               <Card className="position-relative mb-4" style={{cursor: 'pointer'}}>
                 <Image
                   src={item.photo}
