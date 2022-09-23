@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Vote, City, Country, Continent
+from .models import Post, Vote, City, Country, Continent, Language, Currency, Place
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
@@ -15,3 +15,8 @@ admin.site.register(Vote)
 admin.site.register(City)
 admin.site.register(Country)
 admin.site.register(Continent)
+admin.site.register(Language)
+admin.site.register(Currency)
+admin.site.register(Place)
+
+

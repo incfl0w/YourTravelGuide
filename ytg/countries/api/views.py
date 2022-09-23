@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics, permissions, mixins, status
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from ..models import Post, Vote, Country, City
-from .serializers import PostSerializer, VoteSerializer, CitySerializer, CountrySerializer
+from ..models import Post, Vote, Country, City, Place
+from .serializers import PostSerializer, VoteSerializer, CitySerializer, CountrySerializer, PlaceSerializer
 
 
 
@@ -80,3 +80,18 @@ class CountryRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     def get_queryset(self):
         return Country.objects.all()
+
+
+#Place
+class PlaceList(generics.ListCreateAPIView):
+    serializer_class = PlaceSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def get_queryset(self):
+        return Place.objects.all()
+
+
+class PlaceRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PlaceSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def get_queryset(self):
+        return Place.objects.all()
