@@ -59,11 +59,11 @@ class Country(models.Model):
     photo = models.ImageField(upload_to='countries', blank=True)
     flag = models.ImageField(upload_to='flags', blank=True)
     continent = models.ForeignKey('Continent', on_delete=models.CASCADE)
-    languages = models.ManyToManyField("Language", blank=True, null=True)
+    languages = models.ManyToManyField("Language", blank=True)
     population = models.IntegerField(default=0)
     understanding_english = models.IntegerField(default=0,validators=[MinValueValidator(0), MaxValueValidator(10)])
     safety = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
-    currency = models.ManyToManyField('Currency', blank=True, null=True)
+    currencies = models.ManyToManyField('Currency', blank=True)
 
     
     class Meta:
