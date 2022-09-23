@@ -13,7 +13,6 @@ from .serializers import PostSerializer, VoteSerializer, \
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [permissions.IsAdminUser]
     
     def perform_create(self, serializer):
         serializer.save(poster=self.request.user)
@@ -21,7 +20,7 @@ class PostList(generics.ListCreateAPIView):
 class PostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [permissions.IsAdminUser]
+
     def delete(self, request, *args, **kwargs):
         post = Post.objects.filter(pk=kwargs['pk'], poster=self.request.user)
         if post.exists():
@@ -33,7 +32,6 @@ class PostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 #Vote    
 class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
     serializer_class = VoteSerializer
-    permission_classes = [permissions.IsAdminUser]
     
     def get_queryset(self):
         user = self.request.user
@@ -59,13 +57,13 @@ class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
 #City
 class CityList(generics.ListAPIView):
     serializer_class = CityListSerializer
-    permission_classes = [permissions.IsAdminUser]
+
     def get_queryset(self):
         return City.objects.all()
     
 class CityRetrieve(generics.RetrieveAPIView):
     serializer_class = CityDetailtSerializer
-    permission_classes = [permissions.IsAdminUser]
+
     def get_queryset(self):
         return City.objects.all()
 
@@ -73,13 +71,13 @@ class CityRetrieve(generics.RetrieveAPIView):
 #Country
 class CountryList(generics.ListAPIView):
     serializer_class = CountryListSerializer
-    permission_classes = [permissions.IsAdminUser]
+
     def get_queryset(self):
         return Country.objects.all()
 
 class CountryRetrieve(generics.RetrieveAPIView):
     serializer_class = CountryDetailSerializer
-    permission_classes = [permissions.IsAdminUser]
+
     def get_queryset(self):
         return Country.objects.all()
 
@@ -87,13 +85,13 @@ class CountryRetrieve(generics.RetrieveAPIView):
 #Place TODO Places - maybe users can add some places, but places should be revieved by admin
 class PlaceList(generics.ListAPIView):
     serializer_class = PlaceListSerializer
-    permission_classes = [permissions.IsAdminUser]
+
     def get_queryset(self):
         return Place.objects.all()
 
 
 class PlaceRetrieve(generics.RetrieveAPIView):
     serializer_class = PlaceDetailSerializer
-    permission_classes = [permissions.IsAdminUser]
+
     def get_queryset(self):
         return Place.objects.all()
