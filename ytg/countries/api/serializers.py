@@ -1,6 +1,6 @@
 from dataclasses import fields
 from rest_framework import serializers
-from ..models import Post, Vote, City, Country, Continent, Language, Currency
+from ..models import Post, Vote, City, Country, Continent, Language, Currency, Place
 
 class PostSerializer(serializers.ModelSerializer):
     poster = serializers.ReadOnlyField(source='poster.username')
@@ -13,6 +13,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_votes(self, post):
         return Vote.objects.filter(post=post).count()
+   
     
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,15 +27,18 @@ class CitySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description', 'photo', 'country', 
                   'safety', 'population', 'understanding_english']
 
+
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
         fields = ['id', 'name']
+ 
      
 class CurrencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Currency
         fields = ['id', 'name']   
+   
         
 class CountrySerializer(serializers.ModelSerializer):
     cities = CitySerializer(many=True, source='city_set')
@@ -50,3 +54,7 @@ class CountrySerializer(serializers.ModelSerializer):
                   ]
         
 
+class PlaceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Place
+        fields = ['id', 'city', 'name', 'description']

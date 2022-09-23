@@ -124,6 +124,20 @@ class Currency(models.Model):
     
 
 
+class Place(models.Model):
+    name = models.CharField(max_length=150)
+    city = models.ForeignKey('City', on_delete=models.CASCADE)
+    description = models.TextField()
+
+    class Meta:
+        verbose_name = ("Place")
+        verbose_name_plural = ("Places")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("Place_detail", kwargs={"pk": self.pk})
 
 
 
