@@ -3,7 +3,7 @@ import { faPaperPlane, faPhone } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button, Card, Form, InputGroup, ListGroup } from "react-bootstrap"
 import Avatar from "./Avatar"
-export default function Description({profile, country}) {
+export default function CountryDescription({profile, country}) {
   return (
     <Card className="overflow-hidden mb-4">
       <Card.Header>

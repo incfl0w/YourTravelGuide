@@ -51,6 +51,7 @@ class CityListSerializer(serializers.ModelSerializer):
 #CountrySerializers             
 class CountryDetailSerializer(serializers.ModelSerializer):
     cities = CityListSerializer(many=True, source='city_set')
+    capital = CityListSerializer()
     languages = LanguageSerializer(many=True)
     currencies = CurrencySerializer(many=True)
     class Meta:
@@ -59,7 +60,7 @@ class CountryDetailSerializer(serializers.ModelSerializer):
             'id', 'name', 'description', 
             'photo', 'flag', 'continent', 'cities',
             'languages', 'population', 'understanding_english',
-            'safety', 'currencies'      
+            'safety', 'currencies' , 'capital'     
                   ]
         
         
