@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import PostRetrieveUpdateDestroy, PostList, \
-VoteCreate, CountryList, CityList, CityRetrieveUpdateDestroy,\
-    CountryRetrieveUpdateDestroy, PlaceList, PlaceRetrieveUpdateDestroy
+VoteCreate, CountryList, CityList, CityRetrieve,\
+    CountryRetrieve, PlaceList, PlaceRetrieve
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -12,15 +12,15 @@ urlpatterns = [
     path('posts/<int:pk>/vote', VoteCreate.as_view()),
     #city
     path('cities/', CityList.as_view()),
-    path('cities/<int:pk>/', CityRetrieveUpdateDestroy.as_view()),
+    path('cities/<int:pk>/', CityRetrieve.as_view()),
     
     #country
     path('countries/', CountryList.as_view()),
-    path('countries/<int:pk>/', CountryRetrieveUpdateDestroy.as_view()),
+    path('countries/<int:pk>/', CountryRetrieve.as_view()),
     
     #place
     path('places/', PlaceList.as_view()),
-    path('places/<int:pk>/', PlaceRetrieveUpdateDestroy.as_view())
+    path('places/<int:pk>/', PlaceRetrieve.as_view())
     
 ]
 

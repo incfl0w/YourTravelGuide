@@ -1,7 +1,7 @@
 from dataclasses import fields
 from rest_framework import serializers
 from ..models import Post, Vote, City, Country, Continent, Language, Currency, Place
-
+#PostSerializers
 class PostSerializer(serializers.ModelSerializer):
     poster = serializers.ReadOnlyField(source='poster.username')
     poster_id = serializers.ReadOnlyField(source='poster.id')
@@ -21,13 +21,9 @@ class VoteSerializer(serializers.ModelSerializer):
         fields = ['id']
         
         
-class CitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = City
-        fields = ['id', 'name', 'description', 'photo', 'country', 
-                  'safety', 'population', 'understanding_english']
 
-
+        
+#LanguageSerializers
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
@@ -39,9 +35,22 @@ class CurrencySerializer(serializers.ModelSerializer):
         model = Currency
         fields = ['id', 'name']   
    
+ 
+#CitySerializers        
+class CityDetailtSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = ['id', 'name', 'description', 'photo', 'country', 
+                  'safety', 'population', 'understanding_english']
+      
+class CityListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = ['id', 'name', 'photo']
         
-class CountrySerializer(serializers.ModelSerializer):
-    cities = CitySerializer(many=True, source='city_set')
+#CountrySerializers             
+class CountryDetailSerializer(serializers.ModelSerializer):
+    cities = CityListSerializer(many=True, source='city_set')
     languages = LanguageSerializer(many=True)
     currencies = CurrencySerializer(many=True)
     class Meta:
@@ -53,8 +62,22 @@ class CountrySerializer(serializers.ModelSerializer):
             'safety', 'currencies'      
                   ]
         
-
-class PlaceSerializer(serializers.ModelSerializer):
+        
+class CountryListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ['id', 'name','photo', 'flag']  
+        
+              
+#PlaceSerializers
+class PlaceDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Place
+        fields = ['id', 'city', 'name', 'description']
+        
+        
+        
+class PlaceListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
         fields = ['id', 'city', 'name', 'description']
