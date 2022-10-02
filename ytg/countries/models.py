@@ -54,8 +54,9 @@ class City(models.Model):
  
     
 class Country(models.Model):
+    capital = models.ForeignKey('City', on_delete=models.CASCADE, blank=True, null=True, related_name='capital_city')
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField() 
     photo = models.ImageField(upload_to='countries', blank=True)
     flag = models.ImageField(upload_to='flags', blank=True)
     continent = models.ForeignKey('Continent', on_delete=models.CASCADE)
