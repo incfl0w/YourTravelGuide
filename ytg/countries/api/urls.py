@@ -12,7 +12,7 @@ urlpatterns = [
     path('posts/<int:pk>/vote', VoteCreate.as_view()),
     #city
     path('cities/', CityList.as_view()),
-    path('cities/<int:pk>/', CityRetrieve.as_view()),
+    path('cities/<int:pk>/', CityRetrieve.as_view(), name='city-detail'),
     
     #country
     path('countries/', CountryList.as_view()),

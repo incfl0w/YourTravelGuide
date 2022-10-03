@@ -38,18 +38,23 @@ class CurrencySerializer(serializers.ModelSerializer):
  
 #CitySerializers        
 class CityDetailtSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = City
         fields = ['id', 'name', 'description', 'photo', 'country', 
                   'safety', 'population', 'understanding_english']
+        
       
-class CityListSerializer(serializers.ModelSerializer):
+class CityListSerializer(serializers.HyperlinkedModelSerializer):
+    city_url = serializers.HyperlinkedIdentityField(view_name='city-detail')
     class Meta:
         model = City
-        fields = ['id', 'name', 'photo']
+        fields = ['id', 'name', 'photo', 'city_url']
         
+        
+
 #CountrySerializers             
-class CountryDetailSerializer(serializers.ModelSerializer):
+class CountryDetailSerializer(serializers.HyperlinkedModelSerializer):
     cities = CityListSerializer(many=True, source='city_set')
     capital = CityListSerializer()
     languages = LanguageSerializer(many=True)
@@ -58,9 +63,9 @@ class CountryDetailSerializer(serializers.ModelSerializer):
         model = Country
         fields = [
             'id', 'name', 'description', 
-            'photo', 'flag', 'continent', 'cities',
+            'photo', 'flag',  'cities',
             'languages', 'population', 'understanding_english',
-            'safety', 'currencies' , 'capital'     
+            'safety', 'currencies' , 'capital' , 
                   ]
         
         
