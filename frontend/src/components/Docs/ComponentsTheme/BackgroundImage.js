@@ -1,8 +1,8 @@
 import React from "react"
 import { Card } from "react-bootstrap"
-import Image from "../../CustomImage"
 
-import src from "../../../../public/img/photos/sorasak-_UIN-pFfJ7c-unsplash.jpg"
+
+
 export default function BackgroundImages() {
   return (
     <div id="backgroundimage" className="docs-item">
@@ -16,7 +16,7 @@ export default function BackgroundImages() {
         </p>
       </div>
       <Card className="position-relative py-5 overflow-hidden">
-        <Image src={src} alt="" layout="fill" className="bg-image" />
+      
 
         <Card.Body className="text-center position-relative">
           <h3 className="text-white text-uppercase mb-0">
