@@ -1,8 +1,8 @@
 import React from "react"
 import { Row, Col, Card } from "react-bootstrap"
-import Image from "../../CustomImage"
 
-import src from "../../../../public/img/photos/sorasak-_UIN-pFfJ7c-unsplash.jpg"
+
+
 export default function ImageOverlay() {
   return (
     <div id="imageoverlay" className="docs-item">
