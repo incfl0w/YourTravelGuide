@@ -1,6 +1,6 @@
 
 import React from 'react'
-
+import PropTypes from 'prop-types';
 import CountryDescription from './CountryDescription'
 // import Header from '../../../components/header'
 import {Button,Card,Col,Row,} from "react-bootstrap"
@@ -38,13 +38,11 @@ const CountryInfo = ({country}) => {
                   <p className="mb-4"><b>Capital</b>: {country.capital.name}</p>
                   <p className="mb-4"><b>Safety:</b> {country.safety}</p>
                   <p className="mb-4"><b>Population:</b> {country.population}</p>
-                  <p className="mb-4"><b>Currency:</b> {country.currencies.map(element => element.name)}</p>
-                  <p className="mb-4"><b>Languages:</b> {country.languages.map(element => `${element.name} `)}</p>
+                  <p className="mb-4"><b>Currency:</b> {country.currencies.map(element => element.name).join(', ')}</p>
+                  <p className="mb-4"><b>Languages:</b> {country.languages.map(element => `${element.name} `).join(', ')}</p>
                   <p className="mb-4"><b>Weather:</b> Tropic</p>
                   <p className="mb-4"><b>Understanding English:</b> {country.understanding_english}</p>
-  
-  
-  
+
                   <Button variant="outline-dark" size="sm">
                     <FontAwesomeIcon icon={faTwitter} /> Follow
                   </Button>
@@ -60,5 +58,9 @@ const CountryInfo = ({country}) => {
           </Row>
     );
 }
+CountryInfo.propTypes = {
+  country: PropTypes.object
+}
 
 export default CountryInfo;
+

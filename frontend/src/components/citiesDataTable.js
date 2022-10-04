@@ -1,15 +1,14 @@
 import React, { useRef, useEffect } from 'react';
-import { Button, Card } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import { DataTable } from "simple-datatables"
 import Image from "./CustomImage"
 import PropTypes from 'prop-types';
 import Link from "next/link"
-import { Form } from "react-bootstrap"
+
 import LOCAL_HOST from '../data/global_vars/local_host';
 
 const CitiesDataTable = ({ tableLoaded, setTableLoaded, country }) => {
     const dataTableRef = useRef(false)
-    const categoryBulkActionRef = useRef(false)
     useEffect(() => {
         const dataTable = new DataTable(dataTableRef.current, {
             columns: [
@@ -34,11 +33,6 @@ const CitiesDataTable = ({ tableLoaded, setTableLoaded, country }) => {
         window.addEventListener("resize", adjustTableColumns)
 
         dataTable.on("datatable.init", function () {
-            const header = document.querySelector(
-                ".dataTable-top .dataTable-dropdown"
-            )
-            header.prepend(categoryBulkActionRef.current)
-
             const input = document.querySelector(".dataTable-input")
             input.classList.add("form-control", "form-control-sm")
 
@@ -64,19 +58,18 @@ const CitiesDataTable = ({ tableLoaded, setTableLoaded, country }) => {
                         >
                             <thead>
                                 <tr>
-                                    <th> </th>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Categories</th>
-                                    <th>Date</th>
+                                    
+                                    <th>City</th>
+                                    <th>Safety</th>
+                                    <th>Population</th>
+                                    <th>Leaving Price</th>
+                                    <th>Rent Price(month)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {country.cities && country.cities.map((item, index) => (
                                     <tr key={index}>
-                                        <td>
-                                            <Form.Check type="checkbox" />
-                                        </td>
+                                        
                                         <td>
                                             <Link href={`${LOCAL_HOST}cities/${item.id}`}>
                                                 <a className="text-decoration-none text-reset d-flex align-items-center">
@@ -102,24 +95,11 @@ const CitiesDataTable = ({ tableLoaded, setTableLoaded, country }) => {
                                         <td>{item.id}</td>
                                         <td>{item.description}</td>
                                         <td>{item.date}</td>
+                                        <td>{item.date}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        <span className="me-2" ref={categoryBulkActionRef}>
-                            <Form.Select size="sm" className="d-inline w-auto me-1">
-                                <option>Bulk Actions</option>
-                                <option>Delete</option>
-                            </Form.Select>
-
-                            <Button
-                                size="sm"
-                                variant="outline-primary"
-                                className="align-top mb-1 mb-lg-0"
-                            >
-                                Apply
-                            </Button>
-                        </span>
                     </div>
                 </Card>
             </section>
@@ -128,8 +108,8 @@ const CitiesDataTable = ({ tableLoaded, setTableLoaded, country }) => {
 }
 
 CitiesDataTable.propTypes = {
-    tableLoaded: PropTypes.bool, 
-    setTableLoaded:PropTypes.func, 
+    tableLoaded: PropTypes.bool,
+    setTableLoaded: PropTypes.func,
     country: PropTypes.object
 }
 
