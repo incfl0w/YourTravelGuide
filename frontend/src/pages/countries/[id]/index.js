@@ -2,9 +2,9 @@ import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import CountryService from '../../../services/countryService'
 import { Container } from "react-bootstrap"
-import CountryInfo from '../../../components/CountryInfo'
+import CountryInfo from '../../../components/countryComponents/CountryInfo'
 import isEmpty from '../../../custom_functions/isEmpty'
-import CitiesDataTable from '../../../components/citiesDataTable'
+import CitiesDataTable from '../../../components/cityComponents/citiesDataTable' 
 
 export default function PostPage() {
   const countryService = new CountryService()

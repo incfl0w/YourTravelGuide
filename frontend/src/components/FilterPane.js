@@ -8,10 +8,10 @@ import capitalizeFirstLetter from '../custom_functions/capitalizeFirstLetter';
 // const options_continent = 
 // const options_sort = 
 
-const renderFilterOptions = (options) =>{
+const renderFilterOptions = (option, index) =>{
     return (
-        <Form.Select className="d-inline-block w-auto me-3 mb-1 mb-lg-0">
-            {options.map((item, i) => {
+        <Form.Select key={index}className="d-inline-block w-auto me-3 mb-1 mb-lg-0">
+            {option.map((item, i) => {
                 return <option key={i} value={item}>{capitalizeFirstLetter(item)}</option>
             })}
         </Form.Select>
@@ -25,7 +25,7 @@ const FilterPane = ({title, options}) => {
                 <Card.Body>
                     <Row>
                         <Col sm={6}>
-                            {options.map(option => renderFilterOptions(option))}
+                            {options.map((option, i) => renderFilterOptions(option, i))}
                         </Col>
                         <Col sm={6} className="text-md-end">
                             <Form.Label

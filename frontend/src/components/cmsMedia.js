@@ -8,15 +8,12 @@ import FilterPane from "./FilterPane"
 
 
 CmsMedia.propTypes = {
-  data: PropTypes.object, 
+  data: PropTypes.array, 
   path: PropTypes.string,
   title: PropTypes.string, 
   options: PropTypes.array
 }
-
-
 export default function CmsMedia({data, path, title, options}) {
-  
   return (
     <Container fluid className="px-lg-4 px-xl-5">    
       <section className="mb-5">
@@ -24,7 +21,6 @@ export default function CmsMedia({data, path, title, options}) {
         title={title}
         options={options}
         />
-        {console.log(typeof(data))}
         {data && <Row>
           {data.map((item, index) => (
             <Col xs={6} md={4} lg={3} xl={2} key={index}>

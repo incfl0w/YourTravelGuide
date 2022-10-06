@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { Card } from "react-bootstrap"
 import { DataTable } from "simple-datatables"
-import Image from "./CustomImage"
+import Image from "../CustomImage"
 import PropTypes from 'prop-types';
 import Link from "next/link"
 
-import LOCAL_HOST from '../data/global_vars/local_host';
+import LOCAL_HOST from '../../data/global_vars/local_host';
 
 const CitiesDataTable = ({ tableLoaded, setTableLoaded, country }) => {
     const dataTableRef = useRef(false)

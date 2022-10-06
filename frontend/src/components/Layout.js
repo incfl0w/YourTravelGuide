@@ -11,8 +11,7 @@ const Layout = (pageProps) => {
     <div className={pageProps.className}>
       <Head>
         <title>
-          {pageProps.title} - Boootstrap 5 Admin React template by
-          Bootstrapious.com
+          {pageProps.title} - YTG
         </title>
       </Head>
       <NextNprogress color="#4E66F8" options={{ showSpinner: false }} />

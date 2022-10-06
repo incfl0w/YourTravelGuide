@@ -6,6 +6,7 @@ const CustomImage = (props) => {
   if (props.src){
     if (process.env.production_type === "static") {
       return (
+        
         <img
           src={props.src}
           alt={props.alt}
@@ -13,6 +14,7 @@ const CustomImage = (props) => {
           height={props.height}
           className={props.className}
         />
+        
       )
     } else {
       return <Image {...props} />

@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import CountryDescription from './CountryDescription'
 // import Header from '../../../components/header'
 import {Button,Card,Col,Row,} from "react-bootstrap"
-import Image from "./CustomImage"
+import Image from "../CustomImage"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTwitter, } from "@fortawesome/free-brands-svg-icons"
-import profile from "../data/profile.json"
 
 const CountryInfo = ({country}) => {
     return (
@@ -30,7 +29,7 @@ const CountryInfo = ({country}) => {
                         width={122}
                         height={122}
                         priority
-                        alt={profile.name}
+                        alt={country.name}
                       />}
                     </div>
                   </div>
@@ -48,12 +47,9 @@ const CountryInfo = ({country}) => {
                   </Button>
                 </Card.Body>
               </Card>
-              
-              
             </Col>
             <Col lg={8}>
-              {profile.messages && <CountryDescription profile={profile} country={country}/>}
-              
+              { <CountryDescription  country={country}/>} 
             </Col>
           </Row>
     );
